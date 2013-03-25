@@ -212,8 +212,7 @@ class APriori(object):
                 counts[item_index] += 1
 
         if self.check and len(counts) != max_items:
-            print "counts.size() != max_items"
-            sys.exit(1)
+            raise AssertionError("len(counts) != max_items")
 
         # Find singleton with with support >= support_threshold.
         freq_singletons = dict()
@@ -227,8 +226,10 @@ class APriori(object):
                 singleton = frozenset({item})
 
                 if self.check and singleton in freq_singletons:
-                    print "error: singleton already in freq_singletons"
-                    sys.exit(1)
+                    print "key = ", key
+                    print "singleton = ", singleton
+                    raise ValueError("Duplicated singleton.")
+
 
                 if self.verbose:
                         print "adding %s " % singleton,
@@ -314,9 +315,9 @@ class APriori(object):
                     doubleton = frozenset({item_1, item_2})
 
                     if self.check and doubleton in freq_doubletons:
-                        print "error: doubleton already in freq_doubletons"
-                        print "key = ", key, "\ndoubleton = ", doubleton
-                        sys.exit(1)
+                        print "key = ", key
+                        print "doubleton = ", doubleton
+                        raise ValueError("Duplicated doubleton.")
 
                     if self.verbose:
                         print "adding %s " % doubleton,
@@ -427,9 +428,9 @@ class APriori(object):
                         tripleton = frozenset({item_1, item_2, item_3})
 
                         if self.check and tripleton in freq_tripletons:
-                            print "error: tripleton already in freq_tripletons"
-                            print "key = ", key, "\ntripleton = ", tripleton
-                            sys.exit(1)
+                            print "key = ", key
+                            print "tripleton = ", tripleton
+                            raise ValueError("Duplicated tripleton.")
 
                         if self.verbose:
                             print "adding %s " % tripleton,

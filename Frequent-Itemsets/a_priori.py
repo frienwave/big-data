@@ -39,10 +39,10 @@ REFERENCES
     [2] http://en.wikipedia.org/wiki/Apriori_algorithm
 
 EXAMPLES
-    Standard:
+    # Run with default parameters
     python a_priori.py -i in/browsing.txt
 
-    Run in check and verbose mode, and set support threshold to 500:
+    # Run in check and verbose mode, and set support threshold to 500
     python a_priori.py -i in/browsing.txt -c -v -s 500
 
 AUTHOR
